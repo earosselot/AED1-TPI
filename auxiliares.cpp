@@ -293,3 +293,25 @@ int ingresos(hogar h, eph_i ti) {
     }
     return sumaIngresos;
 };
+
+bool esValida(eph_h th, eph_i ti) {
+    bool valido = true;
+
+    valido &= esMatriz(th);
+    valido &= esMatriz(ti);
+    valido &= !vacia(th);
+    valido &= !vacia(ti);
+    valido &= cantidadCorrectaDeColumnasH(th);
+    valido &= cantidadCorrectaDeColumnasI(ti);
+    valido &= !hayIndividuosSinHogares(th, ti);
+    valido &= !hayHogaresSinIndividuos(th, ti);
+    valido &= hayRepetidosH(th);
+    valido &= hayRepetidosI(ti);
+    valido &= mismoAñoYTrimestre(th, ti);
+    valido &= menosDe21MiembrosPorHogar(th, ti);
+    valido &= cantidadValidaDormitorios(th);
+    valido &= valoresEnRangoH(th);
+    valido &= valoresEnRangoI(ti);
+
+    return valido;
+}
