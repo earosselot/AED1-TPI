@@ -35,9 +35,9 @@ bool mismoAñoYTrimestre(eph_i ti, eph_h th);
 
 bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti);
 
-bool cantHabitantes(hogar h, eph_i ti);
+int cantHabitantes(hogar h, eph_i ti);
 
-bool enSuHogar(hogar h, eph_i ti);
+bool esSuHogar(hogar h, individuo i);
 
 bool cantidadValidaDormitorios(eph_h th);
 
