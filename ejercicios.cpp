@@ -7,6 +7,7 @@ using namespace std;
 // Implementacion Problema 1
 bool esEncuestaValida(eph_h th, eph_i ti) {
   bool resp = false;
+  int x=0;
 
   resp = true;
 
