@@ -179,11 +179,12 @@ bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
             esMayorA21++;
             i++;
         }
-        if (esMayorA21 == 0) {
-            return true;
-        } else
-            return false;
     }
+    if (esMayorA21 == 0) {
+        return true;
+    } else
+        return false;
+
 };
 
 int cantHabitantes(hogar h, eph_i ti) {
@@ -313,7 +314,17 @@ bool esValida(eph_h th, eph_i ti) {
     valido &= valoresEnRangoI(ti);
 
     return valido;
-}
+};
+
+int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region) {
+    int maxCantHabitaciones = -1;
+    for (int i = 1; i < th.size(); i++) {
+        if (th[i][IV2] > maxCantHabitaciones && esCasa(th[i]) && th[i][REGION] == region) {
+            maxCantHabitaciones = th[i][IV2];
+        }
+    }
+    return maxCantHabitaciones;
+};
 
 hogar buscarHogarPorCodusu(eph_h th, int codusu) {
     int i = 0;

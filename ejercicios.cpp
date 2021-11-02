@@ -6,21 +6,23 @@ using namespace std;
 
 // Implementacion Problema 1
 bool esEncuestaValida(eph_h th, eph_i ti) {
-    bool resp = false;
-    int x = 0;
 
-    resp = true;
-    //hola
-    return resp;
+    return esValida(th, ti);
 }
 
 // Implementacion Problema 2
 vector<int> histHabitacional(eph_h th, eph_i ti, int region) {
-    vector<int> resultado = {-1, -1, -1, -1, -1, -1};
+    int i = 0;
+    vector<int> histograma(cantidadMaximaDeHabitacionesEnRegion(th, region));
 
-    // TODO
-
-    return resultado;
+    while (i < th.size()) {
+        if (esCasa(th[i]) && th[i][REGION] == region) {
+            histograma[th[i][IV2] - 1]++;
+            i++;
+        } else
+            i++;
+    }
+    return histograma;
 }
 
 // Implementacion Problema 3

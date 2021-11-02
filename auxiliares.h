@@ -55,4 +55,6 @@ int ingresos(hogar h, eph_i ti);
 
 hogar buscarHogarPorCodusu(eph_h th, int codusu);
 
+int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region);
+
 #endif //SOLUCION_AUXILIARES_H
