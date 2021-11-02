@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 #include "ejercicios.h"
 
-bool esMatriz(vector<vector<int> > v) {
+bool esMatriz(vector <vector<int>> v) {
   int i = 0;
   int j = 0;
 
@@ -49,3 +49,91 @@ bool hogarEnTabla(hogar h, eph_h th) {
   }
   return aparece;
 }
+
+bool vacia(vector <vector<int>> t) {
+  return true;
+};
+
+bool cantidadCorrectaDeColumnasI(eph_i ti) {
+  return true;
+};
+
+bool cantidadCorrectaDeColumnasH(eph_h th) {
+  return true;
+};
+
+bool hayIndividuosSinHogares(eph_i ti, eph_h th) {
+  return true;
+};
+
+bool hayHogaresConCodigo(eph_h th, int c) {
+  return true;
+};
+
+bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
+  return true;
+};
+
+bool hayIndividuoConCodigo(eph_i ti, int c) {
+  return true;
+};
+
+bool hayRepetidosI(eph_h t) {
+  return true;
+};
+
+bool mismoCodusuYComponente(individuo i1, individuo i2) {
+  return true;
+};
+
+bool hayRepetidosH(eph_h th) {
+  return true;
+};
+
+bool mismoAñoYTrimestre(eph_i ti, eph_h th) {
+  return true;
+};
+
+bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
+  return true;
+};
+
+bool cantHabitantes(hogar h, eph_i ti) {
+  return true;
+};
+
+bool enSuHogar(hogar h, eph_i ti) {
+  return true;
+};
+
+bool cantidadValidaDormitorios(eph_h th) {
+  return true;
+};
+
+bool valoresEnRangoI(eph_i ti) {
+  return true;
+};
+
+bool individuoValido(individuo i) {
+  return true;
+};
+
+bool valoresEnRangoH(eph_h th) {
+  return true;
+};
+
+bool hogarValido(hogar h) {
+  return true;
+};
+
+bool valorRegionValido(int r) {
+  return true;
+};
+
+bool esCasa(hogar h) {
+  return true;
+};
+
+int ingresos(hogar h, eph_i ti) {
+  return 1;
+};
