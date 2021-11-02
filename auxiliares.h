@@ -53,4 +53,6 @@ bool esCasa(hogar h);
 
 int ingresos(hogar h, eph_i ti);
 
+hogar buscarHogarPorCodusu(eph_h th, int codusu);
+
 #endif //SOLUCION_AUXILIARES_H

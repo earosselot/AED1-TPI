@@ -29,7 +29,7 @@ bool esMatriz(vector<vector<int>> v) {
         return false;
 }
 
-bool vectoresiguales(vector<int> vec1, vector<int> vec2) {
+bool vectoresIguales(vector<int> vec1, vector<int> vec2) {
     bool iguales = true;
     int i = 0;
     while (i < vec1.size() && iguales) {
@@ -43,7 +43,7 @@ bool individuoEnTabla(individuo ind, eph_i ti) {
     int i = 0;
     bool aparece = false;
     while (i < ti.size() && !aparece) {
-        aparece = vectoresiguales(ind, ti[i]);
+        aparece = vectoresIguales(ind, ti[i]);
         i++;
     }
     return aparece;
@@ -53,7 +53,7 @@ bool hogarEnTabla(hogar h, eph_h th) {
     int i = 0;
     bool aparece = false;
     while (i < th.size() && !aparece) {
-        aparece = vectoresiguales(h, th[i]);
+        aparece = vectoresIguales(h, th[i]);
         i++;
     }
     return aparece;
@@ -80,7 +80,6 @@ bool hayRepetidosI(eph_i ti) {
 }
 
 bool hayRepetidosH(eph_h th) {
-
     int n1 = 0;
     int n2 = 0;
     bool res = false;
@@ -314,4 +313,15 @@ bool esValida(eph_h th, eph_i ti) {
     valido &= valoresEnRangoI(ti);
 
     return valido;
+}
+
+hogar buscarHogarPorCodusu(eph_h th, int codusu) {
+    int i = 0;
+    hogar resultado;
+    while (i < th.size()) {
+        if (th[i][HOGCODUSU] == codusu)
+            resultado = th[i];
+        i++;
+    }
+    return resultado;
 }
