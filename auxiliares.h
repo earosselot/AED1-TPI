@@ -3,33 +3,32 @@
 
 #include "definiciones.h"
 
-bool esValida(th
-: eph_h, ti: eph_i);
-bool esMatriz(t
-: vector<vector<int>>);
-bool individuoEnTabla(ind
-: individuo, ti:eph_i);
-bool hogarEnTabla(h
-: hogar,th: eph_h);
-bool vacia(t
-: vector<vector<int>>);
-bool cantidadCorrectaDeColumnasI(ti
-: eph_i);
-bool cantidadCorrectaDeColumnasH(th
-: eph_h);
-bool hayIndividuosSinHogares(ti
-:eph_i, th:eph_h);
-bool hayHogaresConCodigo(th
-: eph_h, c:int);
-bool hayHogaresSinIndividuos(ti
-: eph_i, th:eph_h);
-bool hayIndividuoConCodigo(ti
-:eph_i, c:int);
-bool hayRepetidosI(ti
-: eph_i);
-bool mismoCodusuYComponente(i1
-: individuo, i2:individuo);
-bool hayRepetidosH(th
-: eph_h);
+bool esValida(eph_h th, eph_i ti);
+
+bool esMatriz(vector<vector<int>> t);
+
+bool individuoEnTabla(individuo ind, eph_i ti);
+
+bool hogarEnTabla(hogar h, eph_h th);
+
+bool vacia(vector<vector<int>> t);
+
+bool cantidadCorrectaDeColumnasI(eph_i ti);
+
+bool cantidadCorrectaDeColumnasH(eph_h th);
+
+bool hayIndividuosSinHogares(eph_i ti, eph_h th);
+
+bool hayHogaresConCodigo(eph_h th, int c);
+
+bool hayHogaresSinIndividuos(eph_i ti, eph_h th);
+
+bool hayIndividuoConCodigo(eph_i ti, int c);
+
+bool hayRepetidosI(eph_h t);
+
+bool mismoCodusuYComponente(individuo i1, individuo i2);
+
+bool hayRepetidosH(eph_h th);
 
 #endif //SOLUCION_AUXILIARES_H
