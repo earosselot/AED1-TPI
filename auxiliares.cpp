@@ -135,24 +135,53 @@ bool cantidadValidaDormitorios(eph_h th) {
     return true;
 };
 
-bool valoresEnRangoI(eph_i ti) {
-    return true;
-};
-
 bool individuoValido(individuo i) {
-    return true;
+    bool valido = true;
+    valido &= 0 < i[INDCODUSU];
+    valido &= 0 < i[COMPONENTE];
+    valido &= 0 < i[INDTRIMESTRE] && i[INDTRIMESTRE] <= 4;
+    valido &= 0 < i[CH4] && i[CH4] <= 2;
+    valido &= 0 <= i[CH6];
+    valido &= (i[NIVEL_ED] == 0 || i[NIVEL_ED] == 1);
+    valido &= -1 <= i[ESTADO] && i[ESTADO] <= 1;
+    valido &= 0 <= i[CAT_OCUP] && i[CAT_OCUP] <= 4;
+    valido &= (0 <= i[p47T] || i[p47T] == -1);
+    valido &= 0 <= i[PP04G] && i[PP04G] <= 10;
+    return valido;
 };
 
-bool valoresEnRangoH(eph_h th) {
-    return true;
+bool valoresEnRangoI(eph_i ti) {
+    bool valoresEnRango = true;
+    int i = 0;
+    while (i < ti.size() && valoresEnRango) {
+        valoresEnRango = individuoValido(ti[i]);
+        i++;
+    }
+    return valoresEnRango;
 };
 
 bool hogarValido(hogar h) {
-    return true;
+    bool valido = true;
+    valido &= 0 <= h[HOGCODUSU];
+    valido &= 0 < h[HOGTRIMESTRE] & h[HOGTRIMESTRE] <= 4;
+    valido &= 0 < h[II7] && h[II7] <= 3;
+    valido &= (h[REGION] == 1 || (40 <= h[REGION] && h[REGION] <= 44));
+    valido &= (h[MAS_500] == 0 || h[MAS_500] == 1);
+    valido &= 0 < h[IV1] && h[IV1] <= 5;
+    valido &= 0 < h[IV2];
+    valido &= 1 <= h[II2];
+    valido &= (h[II3] == 1 || h[II3] == 2);
+    return valido;
 };
 
-bool valorRegionValido(int r) {
-    return true;
+bool valoresEnRangoH(eph_h th) {
+    bool valoresEnRango = true;
+    int i = 0;
+    while (i < th.size() && valoresEnRango) {
+        valoresEnRango = hogarValido(th[i]);
+        i++;
+    }
+    return valoresEnRango;
 };
 
 bool esCasa(hogar h) {

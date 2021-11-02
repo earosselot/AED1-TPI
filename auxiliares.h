@@ -49,8 +49,6 @@ bool valoresEnRangoH(eph_h th);
 
 bool hogarValido(hogar h);
 
-bool valorRegionValido(int r);
-
 bool esCasa(hogar h);
 
 int ingresos(hogar h, eph_i ti);
