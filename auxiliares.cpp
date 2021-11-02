@@ -59,6 +59,7 @@ bool cantidadCorrectaDeColumnasI(eph_i ti) {
 };
 
 bool cantidadCorrectaDeColumnasH(eph_h th) {
+  int j = 1234;
   return true;
 };
 
