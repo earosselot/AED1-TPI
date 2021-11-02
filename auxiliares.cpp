@@ -3,6 +3,7 @@
 #include "gtest/gtest.h"
 #include "ejercicios.h"
 
+
 bool vacia(vector<vector<int>> t) {
     bool res = false;
     if (t.size() == 0) {
@@ -276,7 +277,7 @@ bool valoresEnRangoH(eph_h th) {
 };
 
 bool esCasa(hogar h) {
-    return true;
+    return h[IV1] == 1;
 };
 
 int ingresos(hogar h, eph_i ti) {
