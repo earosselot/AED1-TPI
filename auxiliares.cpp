@@ -11,12 +11,9 @@ bool vacia(vector<vector<int>> t) {
     return res;
 }
 
-bool esMatriz(vector<vector<int> > v) {
+bool esMatriz(vector<vector<int>> v) {
     int i = 0;
     int j = 0;
-bool esMatriz(vector<vector<int>> v) {
-  int i = 0;
-  int j = 0;
 
     while (i < v.size() - 1) {
         if (v[i].size() != v[i + 1].size()) {
@@ -29,47 +26,36 @@ bool esMatriz(vector<vector<int>> v) {
         return true;
     } else
         return false;
-    while (i < v.size() - 1) {
-        if (v[i].size() != v[i + 1].size()) {
-            j = j + 1;
-            i = i + 1;
-        } else
-            i = i + 1;
-    }
-    if (j == 0) {
-        return true;
-    } else
-        return false;
 }
 
 bool vectoresiguales(vector<int> vec1, vector<int> vec2) {
-  bool iguales = true;
-  int i = 0;
-  while (i < vec1.size() && iguales) {
-    iguales = vec1[i] == vec2[i];
-    i++;
-  }
-  return iguales;
+    bool iguales = true;
+    int i = 0;
+    while (i < vec1.size() && iguales) {
+        iguales = vec1[i] == vec2[i];
+        i++;
+    }
+    return iguales;
 }
 
 bool individuoEnTabla(individuo ind, eph_i ti) {
-  int i = 0;
-  bool aparece = false;
-  while (i < ti.size() && !aparece) {
-    aparece = vectoresiguales(ind, ti[i]);
-    i++;
-  }
-  return aparece;
+    int i = 0;
+    bool aparece = false;
+    while (i < ti.size() && !aparece) {
+        aparece = vectoresiguales(ind, ti[i]);
+        i++;
+    }
+    return aparece;
 }
 
 bool hogarEnTabla(hogar h, eph_h th) {
-  int i = 0;
-  bool aparece = false;
-  while (i < th.size() && !aparece) {
-    aparece = vectoresiguales(h, th[i]);
-    i++;
-  }
-  return aparece;
+    int i = 0;
+    bool aparece = false;
+    while (i < th.size() && !aparece) {
+        aparece = vectoresiguales(h, th[i]);
+        i++;
+    }
+    return aparece;
 }
 
 bool mismoCodusuYComponente(individuo i1, individuo i2) {
@@ -104,9 +90,6 @@ bool hayRepetidosH(eph_h th) {
     }
     return res;
 }
-bool vacia(vector<vector<int>> t) {
-  return true;
-};
 
 bool cantidadCorrectaDeColumnasI(eph_i ti) {
     return ti[0].size() == FILAS_INDIVIDUO;
@@ -156,18 +139,6 @@ bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
     return hayHogarSinInd;
 };
 
-
-bool hayRepetidosI(eph_h t) {
-    return true;
-};
-
-bool mismoCodusuYComponente(individuo i1, individuo i2) {
-    return true;
-};
-
-bool hayRepetidosH(eph_h th) {
-    return true;
-};
 
 bool mismoAñoYTrimestre(eph_i ti, eph_h th) {
     int i = 0;
@@ -254,9 +225,6 @@ bool cantidadValidaDormitorios(eph_h th) {
         return false;
 };
 
-bool valoresEnRangoI(eph_i ti) {
-    return true;
-};
 
 bool individuoValido(individuo i) {
     bool valido = true;
@@ -308,7 +276,7 @@ bool valoresEnRangoH(eph_h th) {
 };
 
 bool esCasa(hogar h) {
-  return true;
+    return true;
 };
 
 int ingresos(hogar h, eph_i ti) {
