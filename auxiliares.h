@@ -19,7 +19,7 @@ bool cantidadCorrectaDeColumnasH(eph_h th);
 
 bool hayIndividuosSinHogares(eph_i ti, eph_h th);
 
-bool hayHogaresConCodigo(eph_h th, int c);
+bool hayHogarConCodigo(eph_h th, int c);
 
 bool hayHogaresSinIndividuos(eph_i ti, eph_h th);
 
