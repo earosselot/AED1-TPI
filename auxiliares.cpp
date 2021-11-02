@@ -61,6 +61,7 @@ bool cantidadCorrectaDeColumnasI(eph_i ti) {
 
 bool cantidadCorrectaDeColumnasH(eph_h th) {
   // asdasd
+  int j = asd;
   return true;
 };
 
