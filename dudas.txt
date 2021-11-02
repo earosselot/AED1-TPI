@@ -1,6 +1,7 @@
 2. histHabitacional
     hace falta que la funcion reciba el ti??
 
-6. en el auxiliar de buscar hogar, que pasa si no esta ? no podes devolver -1,
+6. en el auxiliar de buscar hogar, que pasa si no esta? no podes devolver -1,
       que deberias devolver?
+            r1: si la encuesta es valida esta si o si.
 

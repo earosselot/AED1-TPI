@@ -53,6 +53,8 @@ bool esCasa(hogar h);
 
 int ingresos(hogar h, eph_i ti);
 
+float ProporcionHCDeCasasPorRegion(eph_i ti, eph_h th, int region);
+
 hogar buscarHogarPorCodusu(eph_h th, int codusu);
 
 int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region);

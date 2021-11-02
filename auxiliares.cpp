@@ -326,6 +326,52 @@ int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region) {
     return maxCantHabitaciones;
 };
 
+
+bool esHC(eph_h th, eph_i ti) {
+    bool res = false;
+    for (int i = 0; i < th.size(); i++) {
+        if (3 * th[i][II2] < cantHabitantes(th[i], ti)) {
+            res = true;
+        }
+    }
+    return res;
+}
+
+bool esHogarValido(hogar h, int region) {
+    bool res = false;
+    if (esCasa(h) && h[REGION] == region && h[MAS_500] == 0) {
+        res = true;
+    }
+    return res;
+}
+
+
+int CantidadDeHogaresConHC(eph_h th, eph_i ti, int region) {
+    int sum = 0;
+    for (int i = 0; i < th.size(); i++) {
+        if (esHogarValido(th[i], region) && esHC(th, ti)) {
+            sum = sum + 1;
+        }
+    }
+    return sum;
+}
+
+int CantidadDeHogares(eph_h th, int region) {
+    int sum = 0;
+    for (int i = 0; i < th.size(); i++) {
+        if (esHogarValido(th[i], region)) {
+            sum = sum + 1;
+        }
+    }
+    return sum;
+}
+
+float ProporcionHCDeCasasPorRegion(eph_i ti, eph_h th, int region) {
+    int res = 0;
+    res = (CantidadDeHogaresConHC(th, ti, region) / CantidadDeHogares(th, region));
+    return res;
+}
+
 hogar buscarHogarPorCodusu(eph_h th, int codusu) {
     int i = 0;
     hogar resultado;
