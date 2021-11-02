@@ -5,11 +5,7 @@
 
 
 bool vacia(vector<vector<int>> t) {
-    bool res = false;
-    if (t.size() == 0) {
-        res = true;
-    }
-    return res;
+    return t[0].size() == 0;
 }
 
 bool esMatriz(vector<vector<int>> v) {
@@ -17,15 +13,13 @@ bool esMatriz(vector<vector<int>> v) {
     int j = 0;
 
     while (i < v.size() - 1) {
-        if (v[i].size() != v[i + 1].size()) {
+        if (v[i].size() != v[i + 1].size())
             j++;
-            i++;
-        } else
-            i++;
+        i++;
     }
-    if (j == 0) {
+    if (j == 0)
         return true;
-    } else
+    else
         return false;
 }
 
@@ -68,36 +62,40 @@ bool mismoCodusuYComponente(individuo i1, individuo i2) {
 }
 
 bool hayRepetidosI(eph_i ti) {
-    int n1 = 0;
-    int n2 = 0;
     bool res = false;
-    for (int i = 0; i < ti.size(); i++) {
-        if (n1 != n2 && mismoCodusuYComponente(ti[n1], ti[n2])) {
-            res = true;
+    int n1 = 0;
+    while (n1 < ti.size() - 1 && !res) {
+        int n2 = n1 + 1;
+        while (n2 < ti.size() && !res) {
+            res = mismoCodusuYComponente(ti[n1], ti[n2]);
+            n2++;
         }
+        n1++;
     }
     return res;
 }
 
 bool hayRepetidosH(eph_h th) {
-    int n1 = 0;
-    int n2 = 0;
     bool res = false;
-    for (int i = 0; i < th.size(); i++) {
-        if (n1 != n2 && th[n1][HOGCODUSU] == th[n2][HOGCODUSU]) {
-            res = true;
+    int n1 = 0;
+    while (n1 < th.size() - 1 && !res) {
+        int n2 = n1 + 1;
+        while (n2 < th.size() && !res) {
+            res = th[n1][HOGCODUSU] == th[n2][HOGCODUSU];
+            n2++;
         }
+        n1++;
     }
     return res;
 }
 
 bool cantidadCorrectaDeColumnasI(eph_i ti) {
     return ti[0].size() == FILAS_INDIVIDUO;
-};
+}
 
 bool cantidadCorrectaDeColumnasH(eph_h th) {
     return th[0].size() == FILAS_HOGAR;
-};
+}
 
 bool hayHogarConCodigo(eph_h th, int c) {
     int i = 0;
@@ -107,7 +105,7 @@ bool hayHogarConCodigo(eph_h th, int c) {
         i++;
     }
     return aparece;
-};
+}
 
 bool hayIndividuosSinHogares(eph_i ti, eph_h th) {
     bool hayIndSinHogar = false;
@@ -117,7 +115,7 @@ bool hayIndividuosSinHogares(eph_i ti, eph_h th) {
         i++;
     }
     return hayIndSinHogar;
-};
+}
 
 bool hayIndividuoConCodigo(eph_i ti, int c) {
     int i = 0;
@@ -127,7 +125,7 @@ bool hayIndividuoConCodigo(eph_i ti, int c) {
         i++;
     }
     return aparece;
-};
+}
 
 bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
     bool hayHogarSinInd = false;
@@ -137,36 +135,81 @@ bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
         i++;
     }
     return hayHogarSinInd;
-};
+}
 
 
 bool mismoAñoYTrimestre(eph_i ti, eph_h th) {
-    int i = 0;
-    int esDistinto = 0;
-    while (i < ti.size() - 1) {
-        if (ti[i][INDANIO] == ti[i + 1][INDANIO] && ti[i][INDTRIMESTRE] == ti[i + 1][INDTRIMESTRE]) {
-            i++;
-        } else {
-            esDistinto++;
-            i++;
-        }
-    }
-    int j = 0;
 
-    while (j < th.size() - 1) {
-        if (th[j][HOGANIO] == th[j + 1][HOGANIO] && th[j][HOGTRIMESTRE] == th[j + 1][HOGTRIMESTRE]) {
-            j++;
-        } else {
-            esDistinto++;
+    int anio = ti[0][INDANIO];
+    int trim = ti[0][INDTRIMESTRE];
+    bool aniosCorrectos = true;
+    bool trimCorrectos = true;
+
+    int i = 1;
+    while (i < ti.size() && aniosCorrectos && trimCorrectos) {
+        aniosCorrectos = anio == ti[i][INDANIO];
+        trimCorrectos = trim == ti[i][INDTRIMESTRE];
+        i++;
+    }
+
+    if (aniosCorrectos && trimCorrectos) {
+        int j = 0;
+        while (j < th.size() && aniosCorrectos && trimCorrectos) {
+            aniosCorrectos = anio == th[j][HOGANIO];
+            trimCorrectos = trim == th[j][HOGTRIMESTRE];
             j++;
         }
     }
-    if (esDistinto == 0) {
+
+    return aniosCorrectos && trimCorrectos;
+
+//    int i = 0;
+//    int esDistinto = 0;
+//    while (i < ti.size() - 1) {
+//        if (ti[i][INDANIO] == ti[i + 1][INDANIO] && ti[i][INDTRIMESTRE] == ti[i + 1][INDTRIMESTRE]) {
+//            i++;
+//        } else {
+//            esDistinto++;
+//            i++;
+//        }
+//    }
+//
+//    int j = 0;
+//    while (j < th.size() - 1) {
+//        if (th[j][HOGANIO] == th[j + 1][HOGANIO] && th[j][HOGTRIMESTRE] == th[j + 1][HOGTRIMESTRE]) {
+//            j++;
+//        } else {
+//            esDistinto++;
+//            j++;
+//        }
+//    }
+//    if (esDistinto == 0) {
+//        return true;
+//    } else
+//        return false;
+};
+
+bool esSuHogar(hogar h, individuo i) {
+    if (h[HOGCODUSU] == i[INDCODUSU]) {
         return true;
     } else
         return false;
-
 };
+
+int cantHabitantes(hogar h, eph_i ti) {
+    int i = 0;
+    int sonHabitantes = 0;
+
+    while (i < ti.size()) {
+        if (esSuHogar(h, ti[i])) {
+            sonHabitantes++;
+            i++;
+        } else
+            i++;
+    }
+    return sonHabitantes;
+};
+
 
 bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
     int i = 0;
@@ -185,27 +228,6 @@ bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
     } else
         return false;
 
-};
-
-int cantHabitantes(hogar h, eph_i ti) {
-    int i = 0;
-    int sonHabitantes = 0;
-
-    while (i < ti.size()) {
-        if (esSuHogar(h, ti[i])) {
-            sonHabitantes++;
-            i++;
-        } else
-            i++;
-    }
-    return sonHabitantes;
-};
-
-bool esSuHogar(hogar h, individuo i) {
-    if (h[HOGCODUSU] == i[INDCODUSU]) {
-        return true;
-    } else
-        return false;
 };
 
 bool cantidadValidaDormitorios(eph_h th) {
@@ -229,16 +251,16 @@ bool cantidadValidaDormitorios(eph_h th) {
 
 bool individuoValido(individuo i) {
     bool valido = true;
-    valido &= 0 < i[INDCODUSU];
-    valido &= 0 < i[COMPONENTE];
-    valido &= 0 < i[INDTRIMESTRE] && i[INDTRIMESTRE] <= 4;
-    valido &= 0 < i[CH4] && i[CH4] <= 2;
-    valido &= 0 <= i[CH6];
-    valido &= (i[NIVEL_ED] == 0 || i[NIVEL_ED] == 1);
-    valido &= -1 <= i[ESTADO] && i[ESTADO] <= 1;
-    valido &= 0 <= i[CAT_OCUP] && i[CAT_OCUP] <= 4;
-    valido &= (0 <= i[p47T] || i[p47T] == -1);
-    valido &= 0 <= i[PP04G] && i[PP04G] <= 10;
+    valido = valido && 0 < i[INDCODUSU];
+    valido = valido && 0 < i[COMPONENTE];
+    valido = valido && 0 < i[INDTRIMESTRE] && i[INDTRIMESTRE] <= 4;
+    valido = valido && 0 < i[CH4] && i[CH4] <= 2;
+    valido = valido && 0 <= i[CH6];
+    valido = valido && (i[NIVEL_ED] == 0 || i[NIVEL_ED] == 1);
+    valido = valido && -1 <= i[ESTADO] && i[ESTADO] <= 1;
+    valido = valido && 0 <= i[CAT_OCUP] && i[CAT_OCUP] <= 4;
+    valido = valido && (0 <= i[p47T] || i[p47T] == -1);
+    valido = valido && 0 <= i[PP04G] && i[PP04G] <= 10;
     return valido;
 };
 
@@ -254,15 +276,15 @@ bool valoresEnRangoI(eph_i ti) {
 
 bool hogarValido(hogar h) {
     bool valido = true;
-    valido &= 0 <= h[HOGCODUSU];
-    valido &= 0 < h[HOGTRIMESTRE] & h[HOGTRIMESTRE] <= 4;
-    valido &= 0 < h[II7] && h[II7] <= 3;
-    valido &= (h[REGION] == 1 || (40 <= h[REGION] && h[REGION] <= 44));
-    valido &= (h[MAS_500] == 0 || h[MAS_500] == 1);
-    valido &= 0 < h[IV1] && h[IV1] <= 5;
-    valido &= 0 < h[IV2];
-    valido &= 1 <= h[II2];
-    valido &= (h[II3] == 1 || h[II3] == 2);
+    valido = valido && 0 <= h[HOGCODUSU];
+    valido = valido && 0 < h[HOGTRIMESTRE] & h[HOGTRIMESTRE] <= 4;
+    valido = valido && 0 < h[II7] && h[II7] <= 3;
+    valido = valido && (h[REGION] == 1 || (40 <= h[REGION] && h[REGION] <= 44));
+    valido = valido && (h[MAS_500] == 0 || h[MAS_500] == 1);
+    valido = valido && 0 < h[IV1] && h[IV1] <= 5;
+    valido = valido && 0 < h[IV2];
+    valido = valido && 1 <= h[II2];
+    valido = valido && (h[II3] == 1 || h[II3] == 2);
     return valido;
 };
 
@@ -297,21 +319,21 @@ int ingresos(hogar h, eph_i ti) {
 bool esValida(eph_h th, eph_i ti) {
     bool valido = true;
 
-    valido &= esMatriz(th);
-    valido &= esMatriz(ti);
-    valido &= !vacia(th);
-    valido &= !vacia(ti);
-    valido &= cantidadCorrectaDeColumnasH(th);
-    valido &= cantidadCorrectaDeColumnasI(ti);
-    valido &= !hayIndividuosSinHogares(th, ti);
-    valido &= !hayHogaresSinIndividuos(th, ti);
-    valido &= hayRepetidosH(th);
-    valido &= hayRepetidosI(ti);
-    valido &= mismoAñoYTrimestre(th, ti);
-    valido &= menosDe21MiembrosPorHogar(th, ti);
-    valido &= cantidadValidaDormitorios(th);
-    valido &= valoresEnRangoH(th);
-    valido &= valoresEnRangoI(ti);
+    valido = valido && !vacia(th);
+    valido = valido && !vacia(ti);
+    valido = valido && esMatriz(th);
+    valido = valido && esMatriz(ti);
+    valido = valido && cantidadCorrectaDeColumnasH(th);
+    valido = valido && cantidadCorrectaDeColumnasI(ti);
+    valido = valido && !hayIndividuosSinHogares(th, ti);
+    valido = valido && !hayHogaresSinIndividuos(th, ti);
+    valido = valido && !hayRepetidosH(th);
+    valido = valido && !hayRepetidosI(ti);
+    valido = valido && mismoAñoYTrimestre(ti, th);
+    valido = valido && menosDe21MiembrosPorHogar(th, ti);
+    valido = valido && cantidadValidaDormitorios(th);
+    valido = valido && valoresEnRangoH(th);
+    valido = valido && valoresEnRangoI(ti);
 
     return valido;
 };

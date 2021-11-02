@@ -35,7 +35,7 @@ TEST(esEncuestaValidaTEST, valida) {
 
 TEST(esEncuestaValidaTEST, invalidaSinHogares) {
 
-    eph_h th = {};
+    eph_h th = {{}};
 
     eph_i ti = {{20957, 2020, 1, 1, 3, 1, 88, 0, 0, 90000, 10},
                 {20957, 2020, 2, 1, 3, 2, 82, 0, 0, 25000, 10},
