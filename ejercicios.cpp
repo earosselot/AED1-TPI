@@ -113,8 +113,8 @@ vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> c
             if (distanciaEuclidiana(th[i], centro) < distancias[j]) {
                 hogaresPorRegion[j]++;
                 j = hogaresPorRegion.size();
-            }
-            j++;
+            } else
+                j++;
         }
         i++;
     }
