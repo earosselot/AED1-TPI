@@ -405,10 +405,9 @@ hogar buscarHogarPorCodusu(eph_h th, int codusu) {
     return resultado;
 }
 
-int distanciaEuclidiana(hogar h, pair<int, int> centro) {
-    int distancia = 0;
+float distanciaEuclidiana(hogar h, pair<int, int> centro) {
 
-    distancia = sqrt((centro.first - h[HOGLATITUD]) ^ 2 + (centro.second - h[HOGLONGITUD]) ^ 2);
+    int distancia = floor(sqrt((pow((centro.first - h[HOGLATITUD]), 2)) + (pow((centro.second - h[HOGLONGITUD]), 2))));
 
     return distancia;
 }
