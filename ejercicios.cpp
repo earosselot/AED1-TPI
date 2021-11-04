@@ -91,18 +91,33 @@ vector<hogar> muestraHomogenea(eph_h &th, eph_i &ti) {
 // Implementacion Problema 9
 void corregirRegion(eph_h &th, eph_i ti) {
 
-    // TODO
+    int i = 0;
 
+    while (i < th.size()) {
+        if (th[i][REGION] == 1) {
+            th[i][REGION] = 43;
+        }
+        i++;
+    }
     return;
 }
 
 // Implementacion Problema 10
 vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> centro, vector<int> distancias) {
-    vector<int> resp = {};
+    int i = 0;
+    vector<int> hogaresPorRegion(distancias.size());
 
-    // TODO
-
-    return resp;
+    while (i < th.size()) {
+        int j = 0;
+        while (j < hogaresPorRegion.size()) {
+            if (distanciaEuclidiana(th[i], centro) < distancias[j]) {
+                hogaresPorRegion[j]++;
+            }
+            j++;
+        }
+        i++;
+    }
+    return hogaresPorRegion;
 }
 
 // Implementacion Problema 11

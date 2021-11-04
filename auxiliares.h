@@ -59,4 +59,6 @@ hogar buscarHogarPorCodusu(eph_h th, int codusu);
 
 int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region);
 
+int distanciaEuclidiana(hogar h, pair<int, int> centro);
+
 #endif //SOLUCION_AUXILIARES_H
