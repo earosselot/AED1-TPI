@@ -39,10 +39,12 @@ int findMinPosHogar(const eph_h &th, int inicio, int fin) {
 }
 
 void ordenarTh(eph_h &th) {
-    int cantHogares = th.size();
-    for (int i = 0; i < th.size(); i++) {
-        int minPos = findMinPosHogar(th, i, cantHogares);
-        swap(th, i, minPos);
+    if (th.size() > 0) {
+        int cantHogares = th.size();
+        for (int i = 0; i < th.size(); i++) {
+            int minPos = findMinPosHogar(th, i, cantHogares);
+            swap(th, i, minPos);
+        }
     }
 }
 
@@ -89,9 +91,11 @@ int findMinPosIndividuo(const eph_i &ti, const eph_h &th, int inicio, int fin) {
 }
 
 void ordenarTi(eph_i &ti, const eph_h &th) {
-    int cantIndividuos = ti.size();
-    for (int i = 0; i < th.size(); i++) {
-        int minPos = findMinPosIndividuo(ti, th, i, cantIndividuos);
-        swap(ti, i, minPos);
+    if (ti.size() > 0 && th.size() > 0) {
+        int cantIndividuos = ti.size();
+        for (int i = 0; i < ti.size(); i++) {
+            int minPos = findMinPosIndividuo(ti, th, i, cantIndividuos);
+            swap(ti, i, minPos);
+        }
     }
 }

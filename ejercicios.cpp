@@ -2,6 +2,7 @@
 #include "auxiliares.h"
 #include "definiciones.h"
 #include "./auxiliares/auxiliaresOrdenar.h"
+#include "./auxiliares/auxiliaresQuitarIndividuos.h"
 
 using namespace std;
 
@@ -123,11 +124,37 @@ vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> c
 
 // Implementacion Problema 11
 pair<eph_h, eph_i> quitarIndividuos(eph_i &ti, eph_h &th, vector<pair<int, dato>> busqueda) {
-    eph_h rth = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    eph_i rti = {{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
-    pair<eph_h, eph_i> resp = make_pair(rth, rti);
+    // los ind filtrados estan en ti o en result
+    // los hogares pueden estar repetidos en th y en result
+    pair<eph_h, eph_i> filtrados;
+    eph_h thNuevo;
+    eph_i tiNuevo;
 
-    // TODO
+    for (int i = 0; i < th.size(); i++) {
+        vector<individuo> indEnHogar = individuosEnHogar(th[i][HOGCODUSU], ti);
+        bool todosLosIndDelHogarCumplen = true;
+        bool unIndDelHogarCumple = false;
+        for (int j = 0; j < indEnHogar.size(); j++) {
+            if (cumpleConBusqueda(indEnHogar[j], busqueda)) {
+                filtrados.second.push_back(indEnHogar[j]);
+                unIndDelHogarCumple = true;
+            } else {
+                tiNuevo.push_back(indEnHogar[j]);
+                todosLosIndDelHogarCumplen = false;
+            }
+        }
+        if (todosLosIndDelHogarCumplen) {
+            filtrados.first.push_back(th[i]);
+        } else if (unIndDelHogarCumple) {
+            filtrados.first.push_back(th[i]);
+            thNuevo.push_back(th[i]);
+        } else {
+            thNuevo.push_back(th[i]);
+        }
+    }
 
-    return resp;
+    th = thNuevo;
+    ti = tiNuevo;
+
+    return filtrados;
 }

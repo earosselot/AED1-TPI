@@ -13,7 +13,8 @@ set(SOURCE_FILES main.cpp
         auxiliares.cpp
         ejercicios.cpp
         Funciones_TPI.cpp
-        auxiliares/auxiliaresOrdenar.cpp)
+        auxiliares/auxiliaresOrdenar.cpp
+        auxiliares/auxiliaresQuitarIndividuos.cpp)
 
 add_executable(tpi ${SOURCE_FILES}
         ${DIR_TESTS_EN}
