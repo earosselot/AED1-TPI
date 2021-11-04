@@ -1,6 +1,7 @@
 #include "ejercicios.h"
 #include "auxiliares.h"
 #include "definiciones.h"
+#include "./auxiliares/auxiliaresOrdenar.h"
 
 using namespace std;
 
@@ -72,9 +73,9 @@ join_hi generarJoin(eph_h th, eph_i ti) {
 // Implementacion Problema 7
 void ordenarRegionYCODUSU(eph_h &th, eph_i &ti) {
 
-    // TODO
+    ordenarTh(th);
+    ordenarTi(ti, th);
 
-    return;
 }
 
 // Implementacion Problema 8

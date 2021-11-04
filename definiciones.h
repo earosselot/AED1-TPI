@@ -1,7 +1,3 @@
-//
-// Created by Pablo on 03/10/2017.
-//
-
 #ifndef UTILES_DEFINICIONES_H
 #define UTILES_DEFINICIONES_H
 
@@ -32,8 +28,8 @@ enum ItemHogar {
 
 enum ItemInd {
     INDCODUSU,    // CODUSU
-    INDANIO,      // Año
     COMPONENTE,   // Componente (id de persona dentro de un mismo CODUSU)
+    INDANIO,      // Año
     NIVEL_ED,     // Estudios Universitarios completos
     INDTRIMESTRE, // Trimestre
     CH4,          // Género

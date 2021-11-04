@@ -12,7 +12,8 @@ file(GLOB DIR_TESTS_EN "test/*.cpp")
 set(SOURCE_FILES main.cpp
         auxiliares.cpp
         ejercicios.cpp
-        Funciones_TPI.cpp)
+        Funciones_TPI.cpp
+        auxiliares/auxiliaresOrdenar.cpp)
 
 add_executable(tpi ${SOURCE_FILES}
         ${DIR_TESTS_EN}
