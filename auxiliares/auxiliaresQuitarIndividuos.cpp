@@ -16,8 +16,10 @@ vector<individuo> individuosEnHogar(int codusu, eph_i &ti) {
 
 bool cumpleConBusqueda(individuo ind, const vector<pair<int, dato>> &busqueda) {
     bool cumpleConBusqueda = true;
-    for (auto &query: busqueda) {
-        cumpleConBusqueda &= (ind[query.first] == query.second);
+    int i = 0;
+    while (i < busqueda.size() && cumpleConBusqueda) {
+        cumpleConBusqueda &= (ind[busqueda[i].first] == busqueda[i].second);
+        i++;
     }
     return cumpleConBusqueda;
 }
