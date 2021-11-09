@@ -457,8 +457,8 @@ int cantIndividuosQueTrabajan(eph_h th, eph_i ti) {
 float proporcionTeleworking(eph_h th, eph_i ti) {
     float res = 0;
     if (cantIndividuosQueTrabajan(th, ti) > 0) {
-        res = (cantIndividuosTrabajandoEnSuVivienda(th, ti)
-               / cantIndividuosQueTrabajan(th, ti));
+        res = ((float) cantIndividuosTrabajandoEnSuVivienda(th, ti)
+               / (float) cantIndividuosQueTrabajan(th, ti));
     }
     return res;
 }
@@ -515,7 +515,7 @@ void ordenarTh(eph_h &th, eph_i ti) {
 vector<int> DevolverIngresosHogares(eph_h th, eph_i ti) {
     vector<int> IngHog;
     for (int i = 0; i < th.size(); i++) {
-        IngHog.push_back(ingresos(th[i], ti))
+        IngHog.push_back(ingresos(th[i], ti));
     }
     return IngHog;
 }
@@ -558,7 +558,7 @@ int LaDiferenciaQueMasHogaresTienenEntreSi(vector<int> IngHog) {
     int sum = 0;
     int tmp = 0;
     int tmp1 = 0;
-    for (int dif = 0; dif < (HogarMaximoIngreso(IngHog) - HogarMinIngreso(IngHog)); dif++) {
+    for (int dif = 0; dif < (HogarMaxIngreso(IngHog) - HogarMinIngreso(IngHog)); dif++) {
         for (int i = 0; i < IngHog.size() - 1; i++) {
             if (IngHog[i] - IngHog[i + 1] == dif) {
                 sum = sum + 1;
@@ -566,6 +566,7 @@ int LaDiferenciaQueMasHogaresTienenEntreSi(vector<int> IngHog) {
             tmp = sum;    //De alguna manera tengo que ver como puedo comparar tmp con tmp1
         }               // e ir descartando el menor, y asi sucesivamente hasta quedarme con el maximo.
     }
+    return 1;
 }
 
 bool AlMenos3ConIngresosConMismaDiferencia(eph_h th, eph_i ti) {
@@ -580,11 +581,11 @@ vector<hogar> HogaresConMismDiferencia(eph_h th, eph_i ti) {
     vector<vector<int>> muestra;
     for (int j = 0; j < th.size(); j++) {
         for (int i = 0; i < th.size(); i++) {
-            if (ingresos(th[j], ti))
-                -ingresos(th[i], ti)
-                == LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti))){
-                res.push_back(th[j]);
-                res.push_back(th[i]);
+            if (ingresos(th[j], ti)
+                - ingresos(th[i], ti)
+                == LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti))) {
+                muestra.push_back(th[j]);
+                muestra.push_back(th[i]);
             }
         }
     }

@@ -100,8 +100,8 @@ void corregirRegion(eph_h &th, eph_i ti) {
     int i = 0;
 
     while (i < th.size()) {
-        if (th[i][REGION] == 1) {
-            th[i][REGION] = 43;
+        if (th[i][REGION] == GBA) {
+            th[i][REGION] = PAMPEANA;
         }
         i++;
     }

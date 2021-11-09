@@ -89,7 +89,7 @@ vector<int> DevolverIngresosHogares(eph_h th, eph_i ti);
 
 void Ordenar(vector<int> IngHog);
 
-int HogarMaximoIngreso(vector<int> IngHog);
+int HogarMaxIngreso(vector<int> IngHog);
 
 int HogarMinIngreso(vector<int> IngHog);
 

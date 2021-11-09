@@ -4,12 +4,12 @@
 #include "../ejercicios.h"
 
 
-void swap(vector<vector<int>> &th, int i, int j) {
-    hogar h1 = th[i];
-    hogar h2 = th[j];
-    th[i] = h2;
-    th[j] = h1;
-}
+//void swap(vector<vector<int>> &th, int i, int j) {
+//    hogar h1 = th[i];
+//    hogar h2 = th[j];
+//    th[i] = h2;
+//    th[j] = h1;
+//}
 
 bool esMenorHogar(const hogar &h1, const hogar &h2) {
     // Devuelve true si el primero es menor
