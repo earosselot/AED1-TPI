@@ -43,18 +43,20 @@ vector<pair<int, float>> laCasaEstaQuedandoChica(eph_h th, eph_i ti) {
 // Implementacion Problema 4
 bool creceElTeleworkingEnCiudadesGrandes(eph_h t1h, eph_i t1i, eph_h t2h, eph_i t2i) {
     bool resp = false;
-
-    // TODO
-
+    if (proporcionTeleworking(t2h, t2i) > proporcionTeleworking(t1h, t1i)) {
+        resp = true;
+    }
     return resp;
 }
 
 // Implementacion Problema 5
 int costoSubsidioMejora(eph_h th, eph_i ti, int monto) {
-    int resp = -1;
-
-    // TODO
-
+    int resp = 0;
+    for (int i = 0; i < th.size(); i++) {
+        if ((th[i][II7] == 1) && tieneCasaChica(th[i], ti)) {
+            resp = resp + monto;
+        }
+    }
     return resp;
 }
 
@@ -83,8 +85,11 @@ void ordenarRegionYCODUSU(eph_h &th, eph_i &ti) {
 vector<hogar> muestraHomogenea(eph_h &th, eph_i &ti) {
     hogar h = {};
     vector<hogar> resp = {h};
-
-    // TODO
+    if (existeSolucionMuestraHomogeneaConAlMenos3(th, ti)) {
+        resp = HogaresConMismDiferencia(th, ti);
+        ordenarTh(
+                resp);     //Lo pongo adentro xq si es falso y hay q devolver una sec vacia se indefiniria si la quisiera ordenar...
+    }
 
     return resp;
 }

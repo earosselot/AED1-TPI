@@ -411,3 +411,200 @@ float distanciaEuclidiana(hogar h, pair<int, int> centro) {
 
     return distancia;
 }
+
+bool trabajaEnSuVivienda(individuo ind, eph_h th) {
+    bool res = false;
+    for (int j = 0; j < th.size(); j++) {
+        if (esSuHogar(th[j], ind) && (ind[PP04G] == 6) && th[j][II3] == 1) {
+            res = true;
+        }
+    }
+    return res;
+}
+
+bool individuoEnHogarValido(individuo ind, eph_h th) {
+    bool res = false;
+    for (int j = 0; j < th.size(); j++) {
+        if (esSuHogar(th[j], ind) && th[j][MAS_500] == 1 && (th[j][IV1] == 1 || th[j][IV1] == 2)) {
+            res = true;
+        }
+    }
+    return res;
+}
+
+int cantIndividuosTrabajandoEnSuVivienda(eph_h th, eph_i ti) {
+    int sum = 0;
+    for (int i = 0; i < ti.size(); i++) {
+        if ((ti[i][ESTADO] == 1) && trabajaEnSuVivienda(ti[i], th)
+            && individuoEnHogarValido(ti[i], th)) {
+            sum = sum + 1;
+        }
+    }
+    return sum;
+}
+
+int cantIndividuosQueTrabajan(eph_h th, eph_i ti) {
+    int sum = 0;
+    for (int i = 0; i < ti.size(); i++) {
+        if ((ti[i][ESTADO] == 1) && individuoEnHogarValido(ti[i], th)) {
+            sum = sum + 1;
+        }
+    }
+    return sum;
+}
+
+
+float proporcionTeleworking(eph_h th, eph_i ti) {
+    float res = 0;
+    if (cantIndividuosQueTrabajan(th, ti) > 0) {
+        res = (cantIndividuosTrabajandoEnSuVivienda(th, ti)
+               / cantIndividuosQueTrabajan(th, ti));
+    }
+    return res;
+}
+
+
+bool tieneCasaChica(hogar h, eph_i ti) {
+    bool res = false;
+    if ((cantHabitantes(h, ti) - 2) > h[II2]) {
+        res = true;
+    }
+    return res;
+}
+
+void swap(vector<vector<int>> &th, int i, int j) {
+    hogar h1 = th[i];
+    hogar h2 = th[j];
+    th[i] = h2;
+    th[j] = h1;
+}
+
+bool esMenorHogarIngresos(const hogar &h1, const hogar &h2, eph_i ti) {
+    // Devuelve true si el primero es menor
+    bool res = false;
+    if (ingresos(h1, ti) < ingresos(h2, ti)) {
+        res = true;
+    } else if (ingresos(h1, ti) > ingresos(h2, ti)) {
+        res = false;
+    }
+    return res;
+}
+
+int findMinPosHogar(const eph_h &th, int inicio, int fin, eph_i ti) {
+    hogar hogarMin = th[inicio];
+    int minPos = inicio;
+    for (int i = inicio; i < fin; i++) {
+        if (esMenorHogarIngresos(th[i], hogarMin, ti)) {
+            hogarMin = th[i];
+            minPos = i;
+        }
+    }
+    return minPos;
+}
+
+void ordenarTh(eph_h &th, eph_i ti) {
+    if (th.size() > 0) {
+        int cantHogares = th.size();
+        for (int i = 0; i < th.size(); i++) {
+            int minPos = findMinPosHogar(th, i, cantHogares, ti);
+            swap(th, i, minPos);
+        }
+    }
+}
+
+vector<int> DevolverIngresosHogares(eph_h th, eph_i ti) {
+    vector<int> IngHog;
+    for (int i = 0; i < th.size(); i++) {
+        IngHog.push_back(ingresos(th[i], ti))
+    }
+    return IngHog;
+}
+
+//Ordeno de Menor a mayor asi cuando calculo la diferencia despues no me quedan valores negativos..
+
+void ordenar(vector<int> &IngHog) {
+    float temporal;
+
+    for (int i = 0; i < IngHog.size(); i++) {
+        for (int j = 0; j < IngHog.size() - 1; j++) {
+            if (IngHog[j] < IngHog[j + 1]) {
+                temporal = IngHog[j];
+                IngHog[j] = IngHog[j + 1];
+                IngHog[j + 1] = temporal;
+            }
+        }
+    }
+}
+
+int HogarMinIngreso(vector<int> IngHog) {
+    int res = 0;
+    for (int i = 0; i < IngHog.size(); i++) {
+        res = IngHog[IngHog.size() - 1];
+    }
+    return res;
+}
+
+int HogarMaxIngreso(vector<int> IngHog) {
+    int res = 0;
+    for (int i = 0; i < IngHog.size(); i++) {
+        res = IngHog[0];
+    }
+    return res;
+}
+
+//La maxima diferencia que pueden tener dos hogares es(Max - Min).
+
+int LaDiferenciaQueMasHogaresTienenEntreSi(vector<int> IngHog) {
+    int sum = 0;
+    int tmp = 0;
+    int tmp1 = 0;
+    for (int dif = 0; dif < (HogarMaximoIngreso(IngHog) - HogarMinIngreso(IngHog)); dif++) {
+        for (int i = 0; i < IngHog.size() - 1; i++) {
+            if (IngHog[i] - IngHog[i + 1] == dif) {
+                sum = sum + 1;
+            }
+            tmp = sum;    //De alguna manera tengo que ver como puedo comparar tmp con tmp1
+        }               // e ir descartando el menor, y asi sucesivamente hasta quedarme con el maximo.
+    }
+}
+
+bool AlMenos3ConIngresosConMismaDiferencia(eph_h th, eph_i ti) {
+    bool res = false;
+    if (LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti)) >= 3) {
+        res = true;
+    }
+    return res;
+}
+
+vector<hogar> HogaresConMismDiferencia(eph_h th, eph_i ti) {
+    vector<vector<int>> muestra;
+    for (int j = 0; j < th.size(); j++) {
+        for (int i = 0; i < th.size(); i++) {
+            if (ingresos(th[j], ti))
+                -ingresos(th[i], ti)
+                == LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti))){
+                res.push_back(th[j]);
+                res.push_back(th[i]);
+            }
+        }
+    }
+    return muestra;
+}
+
+bool esMuestraDeHogares(eph_h th, eph_i ti) {
+    bool res = false;
+    for (int i = 0; i < th.size(); i++) {
+        if (hogarEnTabla(th[i], ti)) {
+            res = true;
+        }
+    }
+    return res;
+}
+
+bool existeSolucionMuestraHomogeneaConAlMenos3(eph_h th, eph_i ti) {
+    bool res = false;
+    if (esMuestraDeHogares(th, ti) && AlMenos3ConIngresosConMismaDiferencia(th, ti)) {
+        res = true;
+    }
+    return res;
+}

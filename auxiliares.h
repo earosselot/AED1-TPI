@@ -61,4 +61,42 @@ int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region);
 
 float distanciaEuclidiana(hogar h, pair<int, int> centro);
 
+bool trabajaEnSuVivienda(individuo ind, eph_h th);
+
+bool individuoEnHogarValido(individuo ind, eph_h th);
+
+int cantIndividuosTrabajandoEnSuVivienda(eph_h th, eph_i ti);
+
+int cantIndividuosQueTrabajan(eph_h th, eph_i ti);
+
+float proporcionTeleworking(eph_h th, eph_i ti);
+
+bool tieneCasaChica(hogar h, eph_i ti);
+
+void swap(vector<vector<int>> &th, int i, int j);
+
+int findMinPosHogar(const eph_h &th, int inicio, int fin, eph_i ti);
+
+bool esMenorHogarIngresos(const hogar &h1, const hogar &h2, eph_i ti);
+
+void ordenarTh(eph_h &th, eph_i ti);
+
+vector<hogar> HogaresConMismDiferencia(eph_h th, eph_i ti);
+
+int LaDiferenciaQueMasHogaresTienenEntreSi(vector<int> IngHog);
+
+vector<int> DevolverIngresosHogares(eph_h th, eph_i ti);
+
+void Ordenar(vector<int> IngHog);
+
+int HogarMaximoIngreso(vector<int> IngHog);
+
+int HogarMinIngreso(vector<int> IngHog);
+
+bool AlMenos3ConIngresosConMismaDiferencia(eph_h th, eph_i ti);
+
+bool esMuestraDeHogares(eph_h th, eph_i ti);
+
+bool existeSolucionMuestraHomogeneaConAlMenos3(eph_h th, eph_i ti);
+
 #endif //SOLUCION_AUXILIARES_H
