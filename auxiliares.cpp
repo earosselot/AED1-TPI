@@ -138,7 +138,7 @@ bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
 }
 
 
-bool mismoAñoYTrimestre(eph_i ti, eph_h th) {
+bool mismoAnioYTrimestre(eph_i ti, eph_h th) {
 
     int anio = ti[0][INDANIO];
     int trim = ti[0][INDTRIMESTRE];
@@ -162,41 +162,13 @@ bool mismoAñoYTrimestre(eph_i ti, eph_h th) {
     }
 
     return aniosCorrectos && trimCorrectos;
+}
 
-//    int i = 0;
-//    int esDistinto = 0;
-//    while (i < ti.size() - 1) {
-//        if (ti[i][INDANIO] == ti[i + 1][INDANIO] && ti[i][INDTRIMESTRE] == ti[i + 1][INDTRIMESTRE]) {
-//            i++;
-//        } else {
-//            esDistinto++;
-//            i++;
-//        }
-//    }
-//
-//    int j = 0;
-//    while (j < th.size() - 1) {
-//        if (th[j][HOGANIO] == th[j + 1][HOGANIO] && th[j][HOGTRIMESTRE] == th[j + 1][HOGTRIMESTRE]) {
-//            j++;
-//        } else {
-//            esDistinto++;
-//            j++;
-//        }
-//    }
-//    if (esDistinto == 0) {
-//        return true;
-//    } else
-//        return false;
-};
+bool esSuHogar(const hogar &h, const individuo &i) {
+    return h[HOGCODUSU] == i[INDCODUSU];
+}
 
-bool esSuHogar(hogar h, individuo i) {
-    if (h[HOGCODUSU] == i[INDCODUSU]) {
-        return true;
-    } else
-        return false;
-};
-
-int cantHabitantes(hogar h, eph_i ti) {
+int cantHabitantes(const hogar &h, const eph_i &ti) {
     int i = 0;
     int sonHabitantes = 0;
 
@@ -208,10 +180,10 @@ int cantHabitantes(hogar h, eph_i ti) {
             i++;
     }
     return sonHabitantes;
-};
+}
 
 
-bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
+bool menosDe21MiembrosPorHogar(const eph_h &th, const eph_i &ti) {
     int i = 0;
     int esMayorA21 = 0;
 
@@ -228,7 +200,7 @@ bool menosDe21MiembrosPorHogar(eph_h th, eph_i ti) {
     } else
         return false;
 
-};
+}
 
 bool cantidadValidaDormitorios(eph_h th) {
     int i = 0;
@@ -246,7 +218,7 @@ bool cantidadValidaDormitorios(eph_h th) {
         return true;
     } else
         return false;
-};
+}
 
 
 bool individuoValido(individuo i) {
@@ -262,7 +234,7 @@ bool individuoValido(individuo i) {
     valido = valido && (0 <= i[p47T] || i[p47T] == -1);
     valido = valido && 0 <= i[PP04G] && i[PP04G] <= 10;
     return valido;
-};
+}
 
 bool valoresEnRangoI(eph_i ti) {
     bool valoresEnRango = true;
@@ -272,7 +244,7 @@ bool valoresEnRangoI(eph_i ti) {
         i++;
     }
     return valoresEnRango;
-};
+}
 
 bool hogarValido(hogar h) {
     bool valido = true;
@@ -286,7 +258,7 @@ bool hogarValido(hogar h) {
     valido = valido && 1 <= h[II2];
     valido = valido && (h[II3] == 1 || h[II3] == 2);
     return valido;
-};
+}
 
 bool valoresEnRangoH(eph_h th) {
     bool valoresEnRango = true;
@@ -296,13 +268,13 @@ bool valoresEnRangoH(eph_h th) {
         i++;
     }
     return valoresEnRango;
-};
+}
 
-bool esCasa(hogar h) {
+bool esCasa(const hogar &h) {
     return h[IV1] == 1;
-};
+}
 
-int ingresos(hogar h, eph_i ti) {
+int ingresos(const hogar &h, const eph_i &ti) {
     int i = 0;
     int sumaIngresos = 0;
 
@@ -314,9 +286,9 @@ int ingresos(hogar h, eph_i ti) {
             i++;
     }
     return sumaIngresos;
-};
+}
 
-bool esValida(eph_h th, eph_i ti) {
+bool esValida(const eph_h &th, const eph_i &ti) {
     bool valido = true;
 
     valido = valido && !vacia(th);
@@ -329,16 +301,16 @@ bool esValida(eph_h th, eph_i ti) {
     valido = valido && !hayHogaresSinIndividuos(th, ti);
     valido = valido && !hayRepetidosH(th);
     valido = valido && !hayRepetidosI(ti);
-    valido = valido && mismoAñoYTrimestre(ti, th);
+    valido = valido && mismoAnioYTrimestre(ti, th);
     valido = valido && menosDe21MiembrosPorHogar(th, ti);
     valido = valido && cantidadValidaDormitorios(th);
     valido = valido && valoresEnRangoH(th);
     valido = valido && valoresEnRangoI(ti);
 
     return valido;
-};
+}
 
-int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region) {
+int cantidadMaximaDeHabitacionesEnRegion(const eph_h &th, int region) {
     int maxCantHabitaciones = -1;
     for (int i = 1; i < th.size(); i++) {
         if (th[i][IV2] > maxCantHabitaciones && esCasa(th[i]) && th[i][REGION] == region) {
@@ -346,7 +318,7 @@ int cantidadMaximaDeHabitacionesEnRegion(eph_h th, int region) {
         }
     }
     return maxCantHabitaciones;
-};
+}
 
 
 bool esHC(eph_h th, eph_i ti) {
@@ -388,13 +360,13 @@ int CantidadDeHogares(eph_h th, int region) {
     return sum;
 }
 
-float ProporcionHCDeCasasPorRegion(eph_i ti, eph_h th, int region) {
+float ProporcionHCDeCasasPorRegion(const eph_i &ti, const eph_h &th, int region) {
     int res = 0;
     res = (CantidadDeHogaresConHC(th, ti, region) / CantidadDeHogares(th, region));
     return res;
 }
 
-hogar buscarHogarPorCodusu(eph_h th, int codusu) {
+hogar buscarHogarPorCodusu(const eph_h &th, int codusu) {
     int i = 0;
     hogar resultado;
     while (i < th.size()) {
@@ -405,14 +377,14 @@ hogar buscarHogarPorCodusu(eph_h th, int codusu) {
     return resultado;
 }
 
-float distanciaEuclidiana(hogar h, pair<int, int> centro) {
+float distanciaEuclidiana(const hogar &h, pair<int, int> centro) {
 
     int distancia = floor(sqrt((pow((centro.first - h[HOGLATITUD]), 2)) + (pow((centro.second - h[HOGLONGITUD]), 2))));
-
+    // TODO: revisar tipos de datos
     return distancia;
 }
 
-bool trabajaEnSuVivienda(individuo ind, eph_h th) {
+bool trabajaEnSuVivienda(const individuo &ind, const eph_h &th) {
     bool res = false;
     for (int j = 0; j < th.size(); j++) {
         if (esSuHogar(th[j], ind) && (ind[PP04G] == 6) && th[j][II3] == 1) {
@@ -422,7 +394,7 @@ bool trabajaEnSuVivienda(individuo ind, eph_h th) {
     return res;
 }
 
-bool individuoEnHogarValido(individuo ind, eph_h th) {
+bool individuoEnHogarValido(const individuo &ind, const eph_h &th) {
     bool res = false;
     for (int j = 0; j < th.size(); j++) {
         if (esSuHogar(th[j], ind) && th[j][MAS_500] == 1 && (th[j][IV1] == 1 || th[j][IV1] == 2)) {
@@ -443,7 +415,7 @@ int cantIndividuosTrabajandoEnSuVivienda(eph_h th, eph_i ti) {
     return sum;
 }
 
-int cantIndividuosQueTrabajan(eph_h th, eph_i ti) {
+int cantIndividuosQueTrabajan(const eph_h &th, const eph_i &ti) {
     int sum = 0;
     for (int i = 0; i < ti.size(); i++) {
         if ((ti[i][ESTADO] == 1) && individuoEnHogarValido(ti[i], th)) {
@@ -454,7 +426,7 @@ int cantIndividuosQueTrabajan(eph_h th, eph_i ti) {
 }
 
 
-float proporcionTeleworking(eph_h th, eph_i ti) {
+float proporcionTeleworking(const eph_h &th, const eph_i &ti) {
     float res = 0;
     if (cantIndividuosQueTrabajan(th, ti) > 0) {
         res = ((float) cantIndividuosTrabajandoEnSuVivienda(th, ti)
@@ -464,7 +436,7 @@ float proporcionTeleworking(eph_h th, eph_i ti) {
 }
 
 
-bool tieneCasaChica(hogar h, eph_i ti) {
+bool tieneCasaChica(const hogar &h, const eph_i &ti) {
     bool res = false;
     if ((cantHabitantes(h, ti) - 2) > h[II2]) {
         res = true;
@@ -477,135 +449,4 @@ void swap(vector<vector<int>> &th, int i, int j) {
     hogar h2 = th[j];
     th[i] = h2;
     th[j] = h1;
-}
-
-bool esMenorHogarIngresos(const hogar &h1, const hogar &h2, eph_i ti) {
-    // Devuelve true si el primero es menor
-    bool res = false;
-    if (ingresos(h1, ti) < ingresos(h2, ti)) {
-        res = true;
-    } else if (ingresos(h1, ti) > ingresos(h2, ti)) {
-        res = false;
-    }
-    return res;
-}
-
-int findMinPosHogar(const eph_h &th, int inicio, int fin, eph_i ti) {
-    hogar hogarMin = th[inicio];
-    int minPos = inicio;
-    for (int i = inicio; i < fin; i++) {
-        if (esMenorHogarIngresos(th[i], hogarMin, ti)) {
-            hogarMin = th[i];
-            minPos = i;
-        }
-    }
-    return minPos;
-}
-
-void ordenarTh(eph_h &th, eph_i ti) {
-    if (th.size() > 0) {
-        int cantHogares = th.size();
-        for (int i = 0; i < th.size(); i++) {
-            int minPos = findMinPosHogar(th, i, cantHogares, ti);
-            swap(th, i, minPos);
-        }
-    }
-}
-
-vector<int> DevolverIngresosHogares(eph_h th, eph_i ti) {
-    vector<int> IngHog;
-    for (int i = 0; i < th.size(); i++) {
-        IngHog.push_back(ingresos(th[i], ti));
-    }
-    return IngHog;
-}
-
-//Ordeno de Menor a mayor asi cuando calculo la diferencia despues no me quedan valores negativos..
-
-void ordenar(vector<int> &IngHog) {
-    float temporal;
-
-    for (int i = 0; i < IngHog.size(); i++) {
-        for (int j = 0; j < IngHog.size() - 1; j++) {
-            if (IngHog[j] < IngHog[j + 1]) {
-                temporal = IngHog[j];
-                IngHog[j] = IngHog[j + 1];
-                IngHog[j + 1] = temporal;
-            }
-        }
-    }
-}
-
-int HogarMinIngreso(vector<int> IngHog) {
-    int res = 0;
-    for (int i = 0; i < IngHog.size(); i++) {
-        res = IngHog[IngHog.size() - 1];
-    }
-    return res;
-}
-
-int HogarMaxIngreso(vector<int> IngHog) {
-    int res = 0;
-    for (int i = 0; i < IngHog.size(); i++) {
-        res = IngHog[0];
-    }
-    return res;
-}
-
-//La maxima diferencia que pueden tener dos hogares es(Max - Min).
-
-int LaDiferenciaQueMasHogaresTienenEntreSi(vector<int> IngHog) {
-    int sum = 0;
-    int tmp = 0;
-    int tmp1 = 0;
-    for (int dif = 0; dif < (HogarMaxIngreso(IngHog) - HogarMinIngreso(IngHog)); dif++) {
-        for (int i = 0; i < IngHog.size() - 1; i++) {
-            if (IngHog[i] - IngHog[i + 1] == dif) {
-                sum = sum + 1;
-            }
-            tmp = sum;    //De alguna manera tengo que ver como puedo comparar tmp con tmp1
-        }               // e ir descartando el menor, y asi sucesivamente hasta quedarme con el maximo.
-    }
-    return 1;
-}
-
-bool AlMenos3ConIngresosConMismaDiferencia(eph_h th, eph_i ti) {
-    bool res = false;
-    if (LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti)) >= 3) {
-        res = true;
-    }
-    return res;
-}
-
-vector<hogar> HogaresConMismDiferencia(eph_h th, eph_i ti) {
-    vector<vector<int>> muestra;
-    for (int j = 0; j < th.size(); j++) {
-        for (int i = 0; i < th.size(); i++) {
-            if (ingresos(th[j], ti)
-                - ingresos(th[i], ti)
-                == LaDiferenciaQueMasHogaresTienenEntreSi(DevolverIngresosHogares(th, ti))) {
-                muestra.push_back(th[j]);
-                muestra.push_back(th[i]);
-            }
-        }
-    }
-    return muestra;
-}
-
-bool esMuestraDeHogares(eph_h th, eph_i ti) {
-    bool res = false;
-    for (int i = 0; i < th.size(); i++) {
-        if (hogarEnTabla(th[i], ti)) {
-            res = true;
-        }
-    }
-    return res;
-}
-
-bool existeSolucionMuestraHomogeneaConAlMenos3(eph_h th, eph_i ti) {
-    bool res = false;
-    if (esMuestraDeHogares(th, ti) && AlMenos3ConIngresosConMismaDiferencia(th, ti)) {
-        res = true;
-    }
-    return res;
 }

@@ -3,6 +3,7 @@
 #include "definiciones.h"
 #include "./auxiliares/auxiliaresOrdenar.h"
 #include "./auxiliares/auxiliaresQuitarIndividuos.h"
+#include "./auxiliares/auxiliaresMuestraHomogenea.h"
 
 using namespace std;
 
@@ -75,23 +76,24 @@ join_hi generarJoin(eph_h th, eph_i ti) {
 
 // Implementacion Problema 7
 void ordenarRegionYCODUSU(eph_h &th, eph_i &ti) {
-
     ordenarTh(th);
     ordenarTi(ti, th);
-
 }
 
 // Implementacion Problema 8
 vector<hogar> muestraHomogenea(eph_h &th, eph_i &ti) {
-    hogar h = {};
-    vector<hogar> resp = {h};
-    if (existeSolucionMuestraHomogeneaConAlMenos3(th, ti)) {
-        resp = HogaresConMismDiferencia(th, ti);
-        ordenarTh(
-                resp);     //Lo pongo adentro xq si es falso y hay q devolver una sec vacia se indefiniria si la quisiera ordenar...
-    }
 
-    return resp;
+    vector<pair<int, int>> ingresosHogar = calcularIngresosPorHogar(th, ti);
+    ordenarIngresos(ingresosHogar);
+
+    vector<pair<int, int>> muestraIngresosMasLarga = calcularMuestraIngresosMasLarga(ingresosHogar);
+
+    if (muestraIngresosMasLarga.size() >= 3) {
+        vector<hogar> muestraHomogenea = extraerHogaresDeIngresos(th, muestraIngresosMasLarga);
+
+        return muestraHomogenea;
+    }
+    return {};
 }
 
 // Implementacion Problema 9
@@ -105,7 +107,7 @@ void corregirRegion(eph_h &th, eph_i ti) {
         }
         i++;
     }
-    return;
+
 }
 
 // Implementacion Problema 10
