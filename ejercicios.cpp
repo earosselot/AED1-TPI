@@ -83,7 +83,7 @@ void ordenarRegionYCODUSU(eph_h &th, eph_i &ti) {
 // Implementacion Problema 8
 vector<hogar> muestraHomogenea(eph_h &th, eph_i &ti) {
 
-    vector<pair<int, int>> ingresosHogar = calcularIngresosPorHogar(th, ti);
+    vector<pair<int, int>> ingresosHogar = calcularIngresosPorHogar(th, ti); // (ingreso, indiceDelHogarEnTh)
     ordenarIngresos(ingresosHogar);
 
     vector<pair<int, int>> muestraIngresosMasLarga = calcularMuestraIngresosMasLarga(ingresosHogar);
