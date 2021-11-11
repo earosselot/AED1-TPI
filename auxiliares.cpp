@@ -23,16 +23,6 @@ bool esMatriz(const vector<vector<int>> &v) {
         return false;
 }
 
-bool vectoresIguales(const vector<int> &vec1, const vector<int> &vec2) {
-    bool iguales = true;
-    int i = 0;
-    while (i < vec1.size() && iguales) {
-        iguales = vec1[i] == vec2[i];
-        i++;
-    }
-    return iguales;
-}
-
 bool mismoCodusuYComponente(individuo i1, individuo i2) {
     bool res = false;
     if (i1[INDCODUSU] == i2[INDCODUSU] && i1[COMPONENTE] == i2[COMPONENTE]) {
