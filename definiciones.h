@@ -28,8 +28,8 @@ enum ItemHogar {
 
 enum ItemInd {
     INDCODUSU,    // CODUSU
-    COMPONENTE,   // Componente (id de persona dentro de un mismo CODUSU)
     INDANIO,      // Año
+    COMPONENTE,   // Componente (id de persona dentro de un mismo CODUSU)
     NIVEL_ED,     // Estudios Universitarios completos
     INDTRIMESTRE, // Trimestre
     CH4,          // Género

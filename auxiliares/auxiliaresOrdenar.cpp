@@ -1,7 +1,6 @@
 #include "../definiciones.h"
 #include "../auxiliares.h"
 #include "gtest/gtest.h"
-#include "../ejercicios.h"
 
 
 //void swap(vector<vector<int>> &th, int i, int j) {
