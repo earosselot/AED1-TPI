@@ -117,10 +117,11 @@ vector<int> histogramaDeAnillosConcentricos(eph_h th, eph_i ti, pair<int, int> c
 
     while (i < th.size()) {
         int j = 0;
-        while (j < hogaresPorRegion.size()) {
-            if (distanciaEuclidiana(th[i], centro) < distancias[j]) {
+        while (j < distancias.size()) {
+            float distanciaAlCentro = distanciaEuclidiana(th[i], centro);
+            if (distanciaAlCentro <= distancias[j] && distanciaAlCentro > 0) {
                 hogaresPorRegion[j]++;
-                j = hogaresPorRegion.size();
+                j = distancias.size();
             } else
                 j++;
         }
