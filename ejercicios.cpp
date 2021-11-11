@@ -15,17 +15,24 @@ bool esEncuestaValida(eph_h th, eph_i ti) {
 
 // Implementacion Problema 2
 vector<int> histHabitacional(eph_h th, eph_i ti, int region) {
-    int i = 0;
-    vector<int> histograma(cantidadMaximaDeHabitacionesEnRegion(th, region));
+    int largoDeHistograma = cantidadMaximaDeHabitacionesEnRegion(th, region);
+    vector<int> histograma;
+    if (largoDeHistograma == -1 || largoDeHistograma == 0) {
+        histograma = {};
+    } else {
 
-    while (i < th.size()) {
-        if (esCasa(th[i]) && th[i][REGION] == region) {
-            histograma[th[i][IV2] - 1]++;
-            i++;
-        } else
-            i++;
+        int i = 0;
+        histograma.resize(largoDeHistograma);
+        while (i < th.size()) {
+            if (esCasa(th[i]) && th[i][REGION] == region) {
+                histograma[th[i][IV2] - 1]++;
+                i++;
+            } else
+                i++;
+        }
     }
     return histograma;
+
 }
 
 // Implementacion Problema 3
