@@ -196,7 +196,7 @@ TEST(histogramaDeAnillosConcentricosTEST, borde) {
     EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
 }
 
-TEST(histogramaDeAnillosConcentricosTEST, bordes) {
+TEST(histogramaDeAnillosConcentricosTEST, centro) {
 
     vector<int> distancias = {10, 20, 50, 100};
 
@@ -226,7 +226,7 @@ TEST(histogramaDeAnillosConcentricosTEST, bordes) {
     EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
 }
 
-TEST(histogramaDeAnillosConcentricosTEST, bordes2) {
+TEST(histogramaDeAnillosConcentricosTEST, bordes) {
 
     vector<int> distancias = {10, 20, 50, 100};
 
