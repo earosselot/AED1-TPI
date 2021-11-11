@@ -291,12 +291,10 @@ int cantidadMaximaDeHabitacionesEnRegion(const eph_h &th, int region) {
 }
 
 
-bool esHC(const eph_h &th, const eph_i &ti) {
+bool esHC(const hogar &h, const eph_i &ti) {
     bool res = false;
-    for (int i = 0; i < th.size(); i++) {
-        if (3 * th[i][II2] < cantHabitantes(th[i], ti)) {
-            res = true;
-        }
+    if (3 * h[II2] < cantHabitantes(h, ti)) {
+        res = true;
     }
     return res;
 }
@@ -313,7 +311,7 @@ bool esHogarValido(hogar h, int region) {
 int CantidadDeHogaresConHC(const eph_h &th, const eph_i &ti, int region) {
     int sum = 0;
     for (int i = 0; i < th.size(); i++) {
-        if (esHogarValido(th[i], region) && esHC(th, ti)) {
+        if (esHogarValido(th[i], region) && esHC(th[i], ti)) {
             sum = sum + 1;
         }
     }
@@ -331,8 +329,10 @@ int CantidadDeHogares(const eph_h &th, int region) {
 }
 
 float ProporcionHCDeCasasPorRegion(const eph_i &ti, const eph_h &th, int region) {
-    int res = 0;
-    res = (CantidadDeHogaresConHC(th, ti, region) / CantidadDeHogares(th, region));
+    float res = 0;
+    if (CantidadDeHogares(th, region) > 0) {
+        res = ((float) CantidadDeHogaresConHC(th, ti, region) / (float) CantidadDeHogares(th, region));
+    }
     return res;
 }
 

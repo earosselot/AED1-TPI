@@ -81,6 +81,7 @@ TEST(costoSubsidioMejoraTEST, casoFacil) {
 
 /******************************************************************************
 TEST 3- Caso Border.
+ Probemos haber que pasa si todas las casas son HC.
 *******************************************************************************/
 
 
@@ -90,7 +91,7 @@ TEST(costoSubsidioMejoraTEST, TodasLasCasas) {
             {188,   2018, 3, 325187, 635309, 1, 40, 0, 1, 3, 1, 2},       // propia,no alcanzan = V
             {14914, 2018, 3, 321889, 631412, 1, 43, 0, 2, 3, 1, 2},     // no propia,no alcanzan = V
     };
-    
+
 
     eph_i ti = {
             {15726, 2018, 1, 0, 3, 2, 50, 1, 3, 10000, 0},
