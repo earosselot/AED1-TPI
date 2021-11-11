@@ -4,11 +4,11 @@
 #include "ejercicios.h"
 
 
-bool vacia(vector<vector<int>> t) {
+bool vacia(const vector<vector<int>> &t) {
     return t[0].size() == 0;
 }
 
-bool esMatriz(vector<vector<int>> v) {
+bool esMatriz(const vector<vector<int>> &v) {
     int i = 0;
     int j = 0;
 
@@ -23,7 +23,7 @@ bool esMatriz(vector<vector<int>> v) {
         return false;
 }
 
-bool vectoresIguales(vector<int> vec1, vector<int> vec2) {
+bool vectoresIguales(const vector<int> &vec1, const vector<int> &vec2) {
     bool iguales = true;
     int i = 0;
     while (i < vec1.size() && iguales) {
@@ -31,26 +31,6 @@ bool vectoresIguales(vector<int> vec1, vector<int> vec2) {
         i++;
     }
     return iguales;
-}
-
-bool individuoEnTabla(individuo ind, eph_i ti) {
-    int i = 0;
-    bool aparece = false;
-    while (i < ti.size() && !aparece) {
-        aparece = vectoresIguales(ind, ti[i]);
-        i++;
-    }
-    return aparece;
-}
-
-bool hogarEnTabla(hogar h, eph_h th) {
-    int i = 0;
-    bool aparece = false;
-    while (i < th.size() && !aparece) {
-        aparece = vectoresIguales(h, th[i]);
-        i++;
-    }
-    return aparece;
 }
 
 bool mismoCodusuYComponente(individuo i1, individuo i2) {
@@ -61,7 +41,7 @@ bool mismoCodusuYComponente(individuo i1, individuo i2) {
     return res;
 }
 
-bool hayRepetidosI(eph_i ti) {
+bool hayRepetidosI(const eph_i &ti) {
     bool res = false;
     int n1 = 0;
     while (n1 < ti.size() - 1 && !res) {
@@ -75,7 +55,7 @@ bool hayRepetidosI(eph_i ti) {
     return res;
 }
 
-bool hayRepetidosH(eph_h th) {
+bool hayRepetidosH(const eph_h &th) {
     bool res = false;
     int n1 = 0;
     while (n1 < th.size() - 1 && !res) {
@@ -89,15 +69,15 @@ bool hayRepetidosH(eph_h th) {
     return res;
 }
 
-bool cantidadCorrectaDeColumnasI(eph_i ti) {
+bool cantidadCorrectaDeColumnasI(const eph_i &ti) {
     return ti[0].size() == FILAS_INDIVIDUO;
 }
 
-bool cantidadCorrectaDeColumnasH(eph_h th) {
+bool cantidadCorrectaDeColumnasH(const eph_h &th) {
     return th[0].size() == FILAS_HOGAR;
 }
 
-bool hayHogarConCodigo(eph_h th, int c) {
+bool hayHogarConCodigo(const eph_h &th, int c) {
     int i = 0;
     bool aparece = false;
     while (i < th.size() && !aparece) {
@@ -107,7 +87,7 @@ bool hayHogarConCodigo(eph_h th, int c) {
     return aparece;
 }
 
-bool hayIndividuosSinHogares(eph_i ti, eph_h th) {
+bool hayIndividuosSinHogares(const eph_i &ti, const eph_h &th) {
     bool hayIndSinHogar = false;
     int i = 0;
     while (i < ti.size() && !hayIndSinHogar) {
@@ -117,7 +97,7 @@ bool hayIndividuosSinHogares(eph_i ti, eph_h th) {
     return hayIndSinHogar;
 }
 
-bool hayIndividuoConCodigo(eph_i ti, int c) {
+bool hayIndividuoConCodigo(const eph_i &ti, int c) {
     int i = 0;
     bool aparece = false;
     while (i < ti.size() && !aparece) {
@@ -127,7 +107,7 @@ bool hayIndividuoConCodigo(eph_i ti, int c) {
     return aparece;
 }
 
-bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
+bool hayHogaresSinIndividuos(const eph_i &ti, const eph_h &th) {
     bool hayHogarSinInd = false;
     int i = 0;
     while (i < th.size() && !hayHogarSinInd) {
@@ -138,7 +118,7 @@ bool hayHogaresSinIndividuos(eph_i ti, eph_h th) {
 }
 
 
-bool mismoAnioYTrimestre(eph_i ti, eph_h th) {
+bool mismoAnioYTrimestre(const eph_i &ti, const eph_h &th) {
 
     int anio = ti[0][INDANIO];
     int trim = ti[0][INDTRIMESTRE];
@@ -202,7 +182,7 @@ bool menosDe21MiembrosPorHogar(const eph_h &th, const eph_i &ti) {
 
 }
 
-bool cantidadValidaDormitorios(eph_h th) {
+bool cantidadValidaDormitorios(const eph_h &th) {
     int i = 0;
     int noSonValidos = 0;
 
@@ -236,7 +216,7 @@ bool individuoValido(individuo i) {
     return valido;
 }
 
-bool valoresEnRangoI(eph_i ti) {
+bool valoresEnRangoI(const eph_i &ti) {
     bool valoresEnRango = true;
     int i = 0;
     while (i < ti.size() && valoresEnRango) {
@@ -260,7 +240,7 @@ bool hogarValido(hogar h) {
     return valido;
 }
 
-bool valoresEnRangoH(eph_h th) {
+bool valoresEnRangoH(const eph_h &th) {
     bool valoresEnRango = true;
     int i = 0;
     while (i < th.size() && valoresEnRango) {
@@ -271,7 +251,7 @@ bool valoresEnRangoH(eph_h th) {
 }
 
 bool esCasa(const hogar &h) {
-    return h[IV1] == 1;
+    return h[IV1] == CASA;
 }
 
 int ingresos(const hogar &h, const eph_i &ti) {
@@ -321,7 +301,7 @@ int cantidadMaximaDeHabitacionesEnRegion(const eph_h &th, int region) {
 }
 
 
-bool esHC(eph_h th, eph_i ti) {
+bool esHC(const eph_h &th, const eph_i &ti) {
     bool res = false;
     for (int i = 0; i < th.size(); i++) {
         if (3 * th[i][II2] < cantHabitantes(th[i], ti)) {
@@ -340,7 +320,7 @@ bool esHogarValido(hogar h, int region) {
 }
 
 
-int CantidadDeHogaresConHC(eph_h th, eph_i ti, int region) {
+int CantidadDeHogaresConHC(const eph_h &th, const eph_i &ti, int region) {
     int sum = 0;
     for (int i = 0; i < th.size(); i++) {
         if (esHogarValido(th[i], region) && esHC(th, ti)) {
@@ -350,7 +330,7 @@ int CantidadDeHogaresConHC(eph_h th, eph_i ti, int region) {
     return sum;
 }
 
-int CantidadDeHogares(eph_h th, int region) {
+int CantidadDeHogares(const eph_h &th, int region) {
     int sum = 0;
     for (int i = 0; i < th.size(); i++) {
         if (esHogarValido(th[i], region)) {
@@ -387,7 +367,7 @@ float distanciaEuclidiana(const hogar &h, pair<int, int> centro) {
 bool trabajaEnSuVivienda(const individuo &ind, const eph_h &th) {
     bool res = false;
     for (int j = 0; j < th.size(); j++) {
-        if (esSuHogar(th[j], ind) && (ind[PP04G] == 6) && th[j][II3] == 1) {
+        if (esSuHogar(th[j], ind) && (ind[PP04G] == EN_ESTE_HOGAR) && th[j][II3] == 1) {
             res = true;
         }
     }
@@ -404,10 +384,10 @@ bool individuoEnHogarValido(const individuo &ind, const eph_h &th) {
     return res;
 }
 
-int cantIndividuosTrabajandoEnSuVivienda(eph_h th, eph_i ti) {
+int cantIndividuosTrabajandoEnSuVivienda(const eph_h &th, const eph_i &ti) {
     int sum = 0;
     for (int i = 0; i < ti.size(); i++) {
-        if ((ti[i][ESTADO] == 1) && trabajaEnSuVivienda(ti[i], th)
+        if ((ti[i][ESTADO] == OCUPADO) && trabajaEnSuVivienda(ti[i], th)
             && individuoEnHogarValido(ti[i], th)) {
             sum = sum + 1;
         }
@@ -418,7 +398,7 @@ int cantIndividuosTrabajandoEnSuVivienda(eph_h th, eph_i ti) {
 int cantIndividuosQueTrabajan(const eph_h &th, const eph_i &ti) {
     int sum = 0;
     for (int i = 0; i < ti.size(); i++) {
-        if ((ti[i][ESTADO] == 1) && individuoEnHogarValido(ti[i], th)) {
+        if ((ti[i][ESTADO] == OCUPADO) && individuoEnHogarValido(ti[i], th)) {
             sum = sum + 1;
         }
     }
