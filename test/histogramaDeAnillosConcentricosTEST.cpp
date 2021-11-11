@@ -196,7 +196,7 @@ TEST(histogramaDeAnillosConcentricosTEST, borde) {
     EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
 }
 
-TEST(histogramaDeAnillosConcentricosTEST, bordes) {
+TEST(histogramaDeAnillosConcentricosTEST, centro) {
 
     vector<int> distancias = {10, 20, 50, 100};
 
@@ -226,7 +226,7 @@ TEST(histogramaDeAnillosConcentricosTEST, bordes) {
     EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
 }
 
-TEST(histogramaDeAnillosConcentricosTEST, bordes2) {
+TEST(histogramaDeAnillosConcentricosTEST, bordes) {
 
     vector<int> distancias = {10, 20, 50, 100};
 
@@ -262,10 +262,10 @@ TEST(histogramaDeAnillosConcentricosTEST, limites) {
     vector<int> distancias = {10, 20, 50, 100};
 
     pair<int, int> centro = {0, 0};
-    eph_h th = {{22114, 2020, 3, 0, 0, 3, 41, 0, 1, 3, 1, 2},  // 1.4
-                {31117, 2020, 3, 1, 10, 3, 40, 0, 1, 6, 6, 2},
-                {31157, 2020, 3, 0, 10, 3, 40, 0, 1, 6, 6, 2},  // 5.8
-                {22866, 2020, 3, 1, 20, 2, 42, 1, 1, 2, 2, 2},  // 53.23
+    eph_h th = {{22114, 2020, 3, 0, 0,   3, 41, 0, 1, 3, 1, 2},  // 1.4
+                {31117, 2020, 3, 1, 10,  3, 40, 0, 1, 6, 6, 2},
+                {31157, 2020, 3, 0, 10,  3, 40, 0, 1, 6, 6, 2},  // 5.8
+                {22866, 2020, 3, 1, 20,  2, 42, 1, 1, 2, 2, 2},  // 53.23
                 {20957, 2020, 3, 1, 100, 1, 43, 0, 1, 3, 1, 2},
                 {20157, 2020, 3, 0, 100, 1, 43, 0, 1, 3, 1, 2}}; // 103.16
 
@@ -285,6 +285,40 @@ TEST(histogramaDeAnillosConcentricosTEST, limites) {
                 {22114, 2020, 1,  0, 3, 1, 18, 0, 0, 20000, 10}};
 
     vector<int> res = {1, 1, 1, 1};
+
+    EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
+}
+
+TEST(histogramaDeAnillosConcentricosTEST, centroDistintoDe0) {
+
+    vector<int> distancias = {10, 20, 50, 100};
+
+    pair<int, int> centro = {-2, 3};
+    eph_h th = {
+            {22114, 2020, 3, -2, 3,  3, 41, 0, 1, 3, 1, 2},  // 0
+            {31117, 2020, 3, 0,  0,  3, 40, 0, 1, 6, 6, 2},  // 3,5
+            {31157, 2020, 3, 1,  1,  3, 40, 0, 1, 6, 6, 2},  // 3,5
+            {20167, 2020, 3, 18, 3,  1, 43, 0, 1, 3, 1, 2},  // 20
+            {20867, 2020, 3, 18, 4,  1, 43, 0, 1, 3, 1, 2}, //20.4
+            {27867, 2020, 3, -2, -7, 1, 43, 0, 1, 3, 1, 2}, //10
+            {20767, 2020, 3, -1, -7, 1, 43, 0, 1, 3, 1, 2}}; //10.5
+
+    eph_i ti = {{20957, 2020, 1,  1, 3, 1, 88, 0, 0, 90000, 10},
+                {20957, 2020, 2,  1, 3, 2, 82, 0, 0, 25000, 10},
+                {31117, 2020, 1,  0, 3, 1, 58, 1, 3, 22000, 1},
+                {31117, 2020, 2,  0, 3, 2, 54, 1, 1, -1,    1},
+                {31117, 2020, 3,  0, 3, 2, 46, 1, 3, 17000, 1},
+                {31117, 2020, 4,  0, 3, 1, 20, 1, 3, 5000,  1},
+                {31117, 2020, 5,  0, 3, 2, 15, 0, 0, 5000,  10},
+                {31117, 2020, 6,  0, 3, 1, 7,  0, 0, 0,     10},
+                {31117, 2020, 8,  0, 3, 2, 11, 0, 0, 0,     10},
+                {31117, 2020, 9,  0, 3, 1, 50, 0, 2, 0,     10},
+                {31117, 2020, 10, 0, 3, 1, 28, 1, 3, 5000,  1},
+                {22866, 2020, 1,  0, 3, 1, 31, 1, 3, 59000, 10},
+                {22866, 2020, 2,  1, 3, 2, 28, 1, 3, 0,     6},
+                {22114, 2020, 1,  0, 3, 1, 18, 0, 0, 20000, 10}};
+
+    vector<int> res = {3, 2, 1, 0};
 
     EXPECT_EQ(res, histogramaDeAnillosConcentricos(th, ti, centro, distancias));
 }

@@ -75,7 +75,7 @@ TEST(corregirRegionTEST, nohayquecorregir) {
                       {22866, 2020, 3, 317157, 627217, 2, 42, 1, 1, 2, 2, 2},
                       {20957, 2020, 3, 313965, 623297, 1, 42, 0, 1, 3, 1, 2}};
 
-    //ASSERT_TRUE(esEncuestaValida(th, ti));
+    ASSERT_TRUE(esEncuestaValida(th, ti));
     corregirRegion(th, ti);
     EXPECT_EQ(th, esperado);
 }
@@ -111,7 +111,7 @@ TEST(corregirRegionTEST, todosSonPampeana) {
                       {22866, 2020, 3, 317157, 627217, 2, 43, 1, 1, 2, 2, 2},
                       {20957, 2020, 3, 313965, 623297, 1, 43, 0, 1, 3, 1, 2}};
 
-    //ASSERT_TRUE(esEncuestaValida(th, ti));
+    ASSERT_TRUE(esEncuestaValida(th, ti));
     corregirRegion(th, ti);
     EXPECT_EQ(th, esperado);
 }
@@ -147,7 +147,7 @@ TEST(corregirRegionTEST, todosSonBsAs) {
                       {22866, 2020, 3, 317157, 627217, 2, 43, 1, 1, 2, 2, 2},
                       {20957, 2020, 3, 313965, 623297, 1, 43, 0, 1, 3, 1, 2}};
 
-    //ASSERT_TRUE(esEncuestaValida(th, ti));
+    ASSERT_TRUE(esEncuestaValida(th, ti));
     corregirRegion(th, ti);
     EXPECT_EQ(th, esperado);
 }
