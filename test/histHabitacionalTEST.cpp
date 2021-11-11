@@ -42,13 +42,12 @@ TEST(histHabitacionalTEST, vectorLargo4) {
                 {20650, 2020, 7,  0, 3, 1, 7,  0, 0, 0,     10},
                 {20650, 2020, 8,  0, 3, 1, 5,  0, 0, 0,     10}};
 
-    //if (!esEncuestaValida(th,ti)) {
-    //ASSERT_TRUE(esEncuestaValida(th,ti));
-    //}
-    //else {
-    vector<int> resultado_esperado = {0, 2, 1, 3};
-    EXPECT_EQ(resultado_esperado, histHabitacional(th, ti, 41));
-    //}
+    if (!esEncuestaValida(th, ti)) {
+        ASSERT_TRUE(esEncuestaValida(th, ti));
+    } else {
+        vector<int> resultado_esperado = {0, 2, 1, 3};
+        EXPECT_EQ(resultado_esperado, histHabitacional(th, ti, 41));
+    }
 
 }
 
